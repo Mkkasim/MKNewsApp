@@ -2,4 +2,6 @@
     <string name="app_name">MKNewsApp</string>
 
     <string name="new_api_key">89bce43e3c5d4fccbba3f6be7abef7f9</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

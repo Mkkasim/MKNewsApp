@@ -16,6 +16,13 @@ public interface ApiInterface {
 
     );
 
+    @GET("everything")
+    Call<NewsClass> getSearched(
+            @Query("q") String query,
+            @Query("apiKey") String apikey
+
+    );
+
     @GET("top-headlines")
     Call<NewsClass> getCategoryNews(
             @Query("country") String country,

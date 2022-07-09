@@ -30,6 +30,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.modelClassList = modelClassList;
     }
 
+    public void filterList(ArrayList<ModelClass> filterllist) {
+        // below line is to add our filtered
+        // list in our course array list.
+        modelClassList = filterllist;
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @SuppressLint("CheckResult")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +60,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         });
 
         holder.heading.setText(modelClassList.get(position).getTitle());
+        holder.description.setText(modelClassList.get(position).getDescription());
+        holder.author.setText(modelClassList.get(position).getAuthor());
         Glide.with(context).load(modelClassList.get(position).getUrlToImage()).into(holder.mainImg);
 
     }
@@ -63,15 +74,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView mainImg;
-        TextView heading;
+        TextView heading,description,author;
         CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             heading = itemView.findViewById(R.id.heading);
+            description = itemView.findViewById(R.id.description);
+            author = itemView.findViewById(R.id.author);
             mainImg = itemView.findViewById(R.id.img);
-            cardView = itemView.findViewById(R.id.cardview);
+            cardView = itemView.findViewById(R.id.baseCard);
+
 
         }
     }

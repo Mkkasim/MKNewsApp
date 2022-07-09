@@ -10,4 +10,8 @@
 
     <color name="royalBlue">#246EE9</color>
     <color name="literoyalBlue">#617AA5</color>
+
+    <color name="redDark">#F52727</color>
+    <color name="redLight">#F36B6B</color>
+    <color name="greyLight">#EDEAEA</color>
 </resources>

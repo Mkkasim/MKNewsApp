@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.mk.newsapp.R;
 import com.mk.newsapp.adapters.RecyclerAdapter;
@@ -57,11 +59,38 @@ public class HomeFragment extends Fragment {
 
         findNews();
 
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                ArrayList<ModelClass> filteredlist = new ArrayList<>();
+
+                for (ModelClass item : modelClassArrayList) {
+                    if (item.getTitle().toLowerCase().contains(s.toLowerCase())) {
+                        filteredlist.add(item);
+                    }
+                }
+                if (filteredlist.isEmpty()) {
+                    Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter.filterList(filteredlist);
+                }
+
+                return true;
+            }
+        });
+
     }
 
     private void findNews() {
 
         String api = getString(R.string.new_api_key);
+
         ApiUtilities.getApiInterface().getNews(country,100,api).enqueue(new Callback<NewsClass>() {
             @Override
             public void onResponse(Call<NewsClass> call, Response<NewsClass> response) {

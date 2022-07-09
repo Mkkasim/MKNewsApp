@@ -3,17 +3,24 @@ package com.mk.newsapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.SearchView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.mk.newsapp.adapters.PagerAdapter;
 import com.mk.newsapp.databinding.ActivityMainBinding;
+import com.mk.newsapp.sessionmanager.SessionManagement;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding  binding;
 
     PagerAdapter adapter;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,21 @@ public class MainActivity extends AppCompatActivity {
 
         setPagerAdapter();
         setTabLayout();
+        SessionManagement.init(this);
+
+        auth = FirebaseAuth.getInstance();
+
+        binding.logout.setOnClickListener(view -> {
+
+            SessionManagement.setLogin(false);
+            FirebaseAuth.getInstance().signOut();
+            Intent in = new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(in);
+            finish();
+
+        });
+
+
     }
 
     private void setPagerAdapter() {
@@ -58,4 +80,5 @@ public class MainActivity extends AppCompatActivity {
         binding.fcont.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.include));
 
     }
+
 }

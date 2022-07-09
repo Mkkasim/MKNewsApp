@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white">
+        android:background="@color/redDark">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,24 +23,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MK NewsApp - CodeMonk"
-                android:textColor="#246EE9"
+                android:text="MK NewsApp - QuantumIt"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/logout"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/logout"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"/>
+
 
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
-
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/include"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_below="@id/toolbar"
-        app:tabTextColor="#617AA5"
-        app:tabSelectedTextColor="#246EE9"
-        app:tabIndicatorColor="#246EE9"
+        app:tabTextColor="@color/redLight"
+        app:tabSelectedTextColor="@color/redDark"
+        app:tabIndicatorColor="@color/redDark"
         app:tabIndicatorHeight="3.5dp"
         android:backgroundTint="@color/white"
         app:tabMode="scrollable">
